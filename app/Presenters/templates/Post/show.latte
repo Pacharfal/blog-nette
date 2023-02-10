@@ -8,6 +8,18 @@
 
 <div class="post">{$post->content}</div>
 
-<h2>Vložte nový příspěvek</h2>
+
+<a n:href="Edit:edit $post->id">Upravit příspěvek</a>
+<h2>Komentáře</h2>
+
+<div class="comments">
+    {foreach $comments as $comment}
+        <p><b><a href="mailto:{$comment->email}" n:tag-if="$comment->email">
+                    {$comment->name}
+                </a></b> napsal:</p>
+
+        <div>{$comment->content}</div>
+    {/foreach}
+</div>
 
 {control commentForm}
