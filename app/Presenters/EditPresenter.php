@@ -56,4 +56,12 @@ final class EditPresenter extends Nette\Application\UI\Presenter
         $this->getComponent('postForm')
             ->setDefaults($post->toArray());
     }
+    public function startup(): void
+    {
+        parent::startup();
+
+        if (!$this->getUser()->isLoggedIn()) {
+            $this->redirect('Sign:in');
+        }
+    }
 }
